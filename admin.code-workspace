@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "../PKM/AbsensiGuruAyaSophia/AbsensiGuruAyaSophia/admin"
+		},
+		{
+			"path": "../PKM/AbsensiGuruAyaSophia/AbsensiGuruAyaSophia/assets"
+		},
+		{
+			"path": "../PKM/AbsensiGuruAyaSophia/AbsensiGuruAyaSophia/config"
+		},
+		{
+			"path": "../PKM/AbsensiGuruAyaSophia/AbsensiGuruAyaSophia/database"
+		},
+		{
+			"path": "../PKM/AbsensiGuruAyaSophia/AbsensiGuruAyaSophia/fpdf"
+		},
+		{
+			"path": "../PKM/AbsensiGuruAyaSophia/AbsensiGuruAyaSophia/guru"
+		},
+		{
+			"path": "../PKM/AbsensiGuruAyaSophia/AbsensiGuruAyaSophia/uploads"
+		}
+	],
+	"settings": {}
+}

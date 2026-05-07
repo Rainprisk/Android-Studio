@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cleanify — experienced cleanliness</title>
+
+  <!-- Inter font (Apple-style Typography) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --ios-green: #28cd41;
+      --glass-bg: rgba(255, 255, 255, 0.45);
+      --glass-border: rgba(255, 255, 255, 0.6);
+    }
+
+    html, body { 
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: #f2f2f7;
+      color: #1c1c1e;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- LIQUID BACKGROUND ANIMATION --- */
+    .liquid-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: -1;
+      background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(40, 205, 65, 0.15) 0%, transparent 70%);
+      filter: blur(60px);
+      border-radius: 50%;
+      animation: move 20s infinite alternate;
+    }
+
+    @keyframes move {
+      from { transform: translate(-10%, -10%); }
+      to { transform: translate(20%, 30%); }
+    }
+
+    /* --- LIQUID GLASS CORE --- */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(30px) saturate(190%);
+      -webkit-backdrop-filter: blur(30px) saturate(190%);
+      border: 1px solid var(--glass-border);
+      box-shadow: 
+        0 15px 35px rgba(0,0,0,0.03),
+        inset 0 0 0 1px rgba(255,255,255,0.3);
+      border-radius: 2.5rem; /* Squircular look */
+    }
+
+    /* --- BUTTONS & INPUTS --- */
+    .btn-ios {
+      background: linear-gradient(180deg, #2edb4e 0%, #28cd41 100%);
+      box-shadow: 0 4px 12px rgba(40, 205, 65, 0.25);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-ios:active { transform: scale(0.97); opacity: 0.9; }
+
+    .input-ios {
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
+    }
+
+    .input-ios:focus {
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(40, 205, 65, 0.1);
+      outline: none;
+      border-color: var(--ios-green);
+    }
+
+    /* --- HOVER EFFECTS --- */
+    .svc-hover {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .svc-hover:hover {
+      transform: translateY(-8px) scale(1.02);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .fade-up { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+    .fade-up.show { opacity: 1; transform: translateY(0); }
+
+    .backdrop-blur-strong { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  </style>
+</head>
+<body>
+
+  <!-- Liquid Animated Background -->
+  <div class="liquid-bg">
+    <div class="blob" style="top: -10%; left: -10%;"></div>
+    <div class="blob" style="bottom: -10%; right: -10%; background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);"></div>
+  </div>
+
+  <!-- ========== LOGIN PAGE ========== -->
+  <div id="loginPage" class="min-h-screen flex items-center justify-center px-6 py-12">
+    <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+
+      <!-- Left: Hero Brand -->
+      <div class="hidden md:flex flex-col gap-8 p-10 glass">
+        <div class="flex items-center gap-4">
+          <div class="w-16 h-16 rounded-[1.5rem] bg-white flex items-center justify-center shadow-sm">
+            <img src="logo.png" alt="Logo" class="w-10 h-10 object-contain">
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold tracking-tight">Cleanify</h3>
+            <p class="text-sm text-slate-500 font-medium italic">The Future of Clean</p>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-4xl font-extrabold leading-tight text-slate-900">Kemurnian dalam setiap sentuhan.</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">Layanan kebersihan berbasis AI-Scheduling dengan standar estetika masa depan.</p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex items-center gap-3 text-sm font-medium text-slate-700">
+            <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">✓</span>
+            Eco-Friendly Nano Technology
+          </div>
+          <div class="flex items-center gap-3 text-sm font-medium text-slate-700">
+            <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">✓</span>
+            Certified Professional Crew
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Login Card -->
+      <div class="glass p-10 flex flex-col items-stretch">
+        <div class="text-center mb-8">
+          <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Selamat Datang</h1>
+          <p class="text-sm text-slate-500 mt-2 font-medium">Masuk ke pusat kontrol Cleanify</p>
+        </div>
+
+        <form id="loginForm" class="space-y-5">
+          <input id="username" type="text" placeholder="Username" class="w-full px-5 py-4 rounded-2xl input-ios" required>
+          <input id="password" type="password" placeholder="Password" class="w-full px-5 py-4 rounded-2xl input-ios" required>
+
+          <div class="flex items-center justify-between text-xs font-semibold text-slate-500 px-1">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded-full border-slate-300 accent-green-500"> Ingat saya
+            </label>
+            <a href="#" class="hover:text-green-600 transition-colors">Lupa Akses?</a>
+          </div>
+
+          <button type="submit" class="w-full py-4 mt-2 rounded-2xl btn-ios text-white font-bold tracking-wide uppercase text-sm">Masuk Sekarang</button>
+        </form>
+
+        <div class="relative my-8">
+          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200/50"></div></div>
+          <div class="relative flex justify-center text-[10px] uppercase font-bold tracking-widest text-slate-400">
+            <span class="bg-transparent px-3">Opsi Lain</span>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <button class="flex-1 py-3 rounded-2xl bg-white/40 border border-white/60 text-xs font-bold hover:bg-white transition-all">GOOGLE</button>
+          <button class="flex-1 py-3 rounded-2xl bg-white/40 border border-white/60 text-xs font-bold hover:bg-white transition-all">WHATSAPP</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MAIN PAGE ========== -->
+  <div id="mainPage" class="hidden min-h-screen flex flex-col">
+
+    <!-- iOS Glass Header -->
+    <header class="sticky top-0 z-40 bg-white/40 backdrop-blur-md border-b border-white/20">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="logo.png" alt="logo" class="w-10 h-10 rounded-xl object-cover shadow-sm">
+          <h2 class="text-xl font-bold tracking-tight text-slate-900">Cleanify</h2>
+        </div>
+
+        <div class="flex items-center gap-6">
+          <nav class="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
+            <a href="#services" class="hover:text-green-600 transition-colors">Layanan</a>
+            <a href="#contact" class="hover:text-green-600 transition-colors">Bantuan</a>
+          </nav>
+          <button id="logoutBtn" class="px-5 py-2 rounded-full bg-red-50 text-red-500 text-xs font-bold border border-red-100 hover:bg-red-500 hover:text-white transition-all">LOGOUT</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12 flex-1 space-y-20">
+
+      <!-- Hero Section -->
+      <section class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="fade-up">
+          <span class="px-4 py-1.5 rounded-full bg-green-100 text-green-700 text-[10px] font-extrabold uppercase tracking-widest">Premium Service</span>
+          <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mt-4 text-slate-900">
+            Bersih, Cepat, <span class="text-green-500">Sempurna.</span>
+          </h1>
+          <p class="mt-6 text-lg text-slate-600 leading-relaxed max-w-lg">
+            Kami mengubah standar kebersihan tradisional menjadi pengalaman mewah dengan teknologi terbaru.
+          </p>
+          <div class="mt-8 flex items-center gap-4">
+            <a href="#contact" class="px-8 py-4 rounded-2xl btn-ios text-white font-bold text-sm">Pesan Sekarang</a>
+            <a href="#services" class="px-8 py-4 rounded-2xl bg-white border border-slate-200 text-slate-700 font-bold text-sm hover:shadow-lg transition-all">Eksplor</a>
+          </div>
+        </div>
+
+        <div class="fade-up p-8 glass flex items-center justify-center">
+            <img src="cleanify.png" alt="Hero" class="max-h-64 object-contain drop-shadow-2xl">
+        </div>
+      </section>
+
+      <!-- Services Grid -->
+      <section id="services">
+        <div class="flex flex-col items-center text-center mb-12">
+            <h3 class="text-3xl font-extrabold text-slate-900">Pilih Kebutuhanmu</h3>
+            <p class="text-slate-500 mt-2">Layanan yang dikurasi khusus untuk kenyamanan Anda</p>
+        </div>
+        
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card Template -->
+          <div class="svc-card glass p-6 svc-hover flex flex-col justify-between">
+            <div>
+                <div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center mb-4 text-green-600 font-bold">H</div>
+                <h4 class="font-bold text-lg">Cleaning Rumah</h4>
+                <p class="mt-2 text-sm text-slate-500 leading-relaxed">Pembersihan menyeluruh: kamar, dapur, kamar mandi, ruang tamu.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-400">MULAI RP200K</span>
+              <button onclick="openServiceDetail('rumah')" class="text-sm font-extrabold text-green-600 hover:underline">PESAN</button>
+            </div>
+          </div>
+
+          <div class="svc-card glass p-6 svc-hover flex flex-col justify-between">
+            <div>
+                <div class="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center mb-4 text-blue-600 font-bold">K</div>
+                <h4 class="font-bold text-lg">Cleaning Kantor</h4>
+                <p class="mt-2 text-sm text-slate-500 leading-relaxed">Layanan harian/mingguan untuk ruang kerja dan fasilitas publik.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-400">MULAI RP250K</span>
+              <button onclick="openServiceDetail('kantor')" class="text-sm font-extrabold text-green-600 hover:underline">PESAN</button>
+            </div>
+          </div>
+
+          <div class="svc-card glass p-6 svc-hover flex flex-col justify-between">
+            <div>
+                <div class="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center mb-4 text-purple-600 font-bold">D</div>
+                <h4 class="font-bold text-lg">Deep Clean</h4>
+                <p class="mt-2 text-sm text-slate-500 leading-relaxed">Pembersihan intensif pasca renovasi atau pindah hunian.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-400">MULAI RP400K</span>
+              <button onclick="openServiceDetail('deep')" class="text-sm font-extrabold text-green-600 hover:underline">PESAN</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="glass p-10">
+        <div class="grid md:grid-cols-2 gap-12">
+          <div>
+            <h3 class="text-3xl font-extrabold text-slate-900">Hubungi Kami</h3>
+            <p class="mt-4 text-slate-600">Konsultasi gratis untuk solusi kebersihan Anda.</p>
+            <div class="mt-8 space-y-4">
+              <div class="flex items-center gap-4 text-sm font-semibold">
+                <span class="p-3 rounded-xl bg-white shadow-sm">📞</span>
+                <a href="tel:+6289696473863" class="text-green-600">+62 896-9647-3863</a>
+              </div>
+              <div class="flex items-center gap-4 text-sm font-semibold">
+                <span class="p-3 rounded-xl bg-white shadow-sm">✉️</span>
+                <span>info@cleanify.id</span>
+              </div>
+            </div>
+          </div>
+
+          <form id="contactForm" class="grid gap-4">
+            <input class="px-5 py-4 rounded-2xl input-ios text-sm" placeholder="Nama Anda" />
+            <textarea class="px-5 py-4 rounded-2xl input-ios text-sm" rows="4" placeholder="Apa yang bisa kami bantu?"></textarea>
+            <button type="submit" class="py-4 rounded-2xl btn-ios text-white font-bold text-sm">KIRIM PESAN</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white/40 backdrop-blur-md border-t border-white/20 py-10 mt-20">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+        <p class="text-xs font-bold text-slate-400">© 2026 CLEANIFY — DESIGNED FOR THE FUTURE</p>
+        <div class="flex gap-6 text-[10px] font-extrabold tracking-widest text-slate-500">
+          <a href="#" class="hover:text-green-600">PRIVACY</a>
+          <a href="#" class="hover:text-green-600">TERMS</a>
+          <a href="#" class="hover:text-green-600">INSTAGRAM</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ========== SERVICE MODAL ========== -->
+  <div id="serviceModal" class="fixed inset-0 hidden items-center justify-center z-50 p-6">
+    <div class="absolute inset-0 bg-black/20 backdrop-blur-strong"></div>
+    <div class="relative w-full max-w-lg p-8 glass z-50 shadow-2xl">
+      <div class="flex justify-between items-start mb-6">
+        <div>
+          <h3 id="serviceTitle" class="text-2xl font-extrabold text-slate-900"></h3>
+          <p id="serviceDesc" class="mt-2 text-sm text-slate-500 font-medium"></p>
+        </div>
+        <button onclick="closeServiceModal()" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-red-500 hover:text-white transition-all text-sm">✕</button>
+      </div>
+
+      <div class="mb-6">
+        <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Teknologi & Alat</h4>
+        <ul id="serviceTools" class="grid grid-cols-1 gap-2 text-sm font-semibold text-slate-700"></ul>
+      </div>
+
+      <form id="orderForm" class="space-y-4">
+        <input id="orderName" type="text" placeholder="Nama" class="w-full px-5 py-4 rounded-2xl input-ios text-sm" required>
+        <input id="orderAddress" type="text" placeholder="Lokasi Penjemputan" class="w-full px-5 py-4 rounded-2xl input-ios text-sm" required>
+        <div class="flex gap-3">
+            <button type="button" onclick="closeServiceModal()" class="flex-1 py-4 rounded-2xl bg-slate-100 font-bold text-xs">BATAL</button>
+            <button type="submit" class="flex-[2] py-4 rounded-2xl btn-ios text-white font-bold text-xs uppercase tracking-widest">Konfirmasi Pesanan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const loginPage = document.getElementById('loginPage');
+    const mainPage = document.getElementById('mainPage');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const serviceModal = document.getElementById('serviceModal');
+    const orderForm = document.getElementById('orderForm');
+
+    const validUser = { username: "user", password: "123" };
+
+    const services = {
+      rumah: {
+        title: "Cleaning Rumah",
+        desc: "Restorasi kesegaran hunian secara menyeluruh.",
+        tools: ["• Nano-particle Vacuum", "• Eco-friendly Mop", "• Anti-bacterial Microfiber"]
+      },
+      kantor: {
+        title: "Cleaning Kantor",
+        desc: "Optimalisasi produktivitas dengan lingkungan yang steril.",
+        tools: ["• Industrial HEPA Filter", "• Surface Sanitizer Grade A", "• Glass Pure Tech"]
+      },
+      deep: {
+        title: "Deep Clean",
+        desc: "Pembersihan hingga ke sela terkecil tanpa cela.",
+        tools: ["• Steam Cleaner 150°C", "• Specialized Chemical Solution", "• Corner Precision Brush"]
+      }
+    };
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      if(user === validUser.username && pass === validUser.password){
+        loginPage.classList.add('hidden');
+        mainPage.classList.remove('hidden');
+        window.scrollTo(0,0);
+        triggerFade();
+      } else {
+        showToast('Akses Ditolak. Periksa kembali.');
+      }
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      mainPage.classList.add('hidden');
+      loginPage.classList.remove('hidden');
+      loginForm.reset();
+    });
+
+    function openServiceDetail(key) {
+      const svc = services[key];
+      if(!svc) return;
+      document.getElementById('serviceTitle').innerText = svc.title;
+      document.getElementById('serviceDesc').innerText = svc.desc;
+      const toolsContainer = document.getElementById('serviceTools');
+      toolsContainer.innerHTML = svc.tools.map(t => `<li>${t}</li>`).join('');
+      serviceModal.classList.remove('hidden');
+      serviceModal.classList.add('flex');
+    }
+
+    function closeServiceModal() {
+      serviceModal.classList.add('hidden');
+      serviceModal.classList.remove('flex');
+    }
+
+    function showToast(msg) {
+      const t = document.createElement('div');
+      t.className = 'fixed top-10 left-1/2 -translate-x-1/2 bg-slate-900/90 text-white px-6 py-3 rounded-full text-xs font-bold tracking-widest backdrop-blur-md z-[100]';
+      t.innerText = msg.toUpperCase();
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 2500);
+    }
+
+    function triggerFade() {
+      document.querySelectorAll('.fade-up').forEach((el, index) => {
+        setTimeout(() => el.classList.add('show'), index * 150);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', triggerFade);
+    window.openServiceDetail = openServiceDetail;
+    window.closeServiceModal = closeServiceModal;
+  </script>
+</body>
+</html>
